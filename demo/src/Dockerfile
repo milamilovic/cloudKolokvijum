@@ -4,8 +4,13 @@ FROM adoptopenjdk:11-jre-hotspot
 # Postavljamo radni direktorijum unutar kontejnera
 WORKDIR /app
 
+#VOLUME /tmp
+EXPOSE 8080
+
 # Kopiramo JAR fajl aplikacije u radni direktorijum
-COPY target/demo-0.0.1-SNAPSHOT.jar application.jar
+# COPY target/demo-0.0.1-SNAPSHOT.jar application.jar
+ARG JAR_FILE=target/demo-0.0.1-SNAPSHOT.jar
+ADD ${JAR_FILE} application.jar
 
 # Dodajemo environment varijable za povezivanje sa PostgreSQL bazom
 # TODO: ove vrednosti ce se dobiti na kolokvijumu
@@ -17,4 +22,5 @@ ENV DB_USERNAME db_username
 ENV DB_PASSWORD db_password
 
 # Pokrećemo Spring Boot aplikaciju prilikom startovanja kontejnera
-CMD ["java", "-jar", "application.jar"]
+# CMD ["java", "-jar", "application.jar"]
+ENTRYPOINT ["java", "-jar", "application.jar"]
