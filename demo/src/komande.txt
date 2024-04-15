@@ -1,7 +1,15 @@
 pozicionirati se u demo folder i pokrenuti u terminalu
 
-docker build -t kolokvijum:v1 -f src/Dockerfile .
+docker build -t sv-22-2021 -f src/Dockerfile .
 
-i potom ukoliko je to uspesno
+i potom ukoliko je to uspesno samo da se isproba
 
 docker run -p 8080:8080 kolokvijum:v1
+
+ali za pusovanje treba
+
+docker tag sv-22-2021:latest public.ecr.aws/h2g9e4h0/sv-22-2021:latest
+
+i
+
+docker push public.ecr.aws/h2g9e4h0/sv-22-2021:latest
